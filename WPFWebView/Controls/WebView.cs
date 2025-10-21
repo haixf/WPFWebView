@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Wpf;
+using WPFWebView.Scripts;
 
 namespace WPFWebView.Controls
 {
@@ -47,6 +48,8 @@ namespace WPFWebView.Controls
             {
                 CoreWebView2.Settings.UserAgent = userAgent;
             }
+
+            CoreWebView2.AddScriptToExecuteOnDocumentCreated(CivetMobileScript.Source);
         }
 
         private static string? LoadUserAgent()
