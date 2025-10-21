@@ -13,6 +13,8 @@ namespace WPFWebView.Controls
     {
         private static readonly Lazy<string?> UserAgent = new Lazy<string?>(LoadUserAgent);
 
+        private CivetMobileHostObject? _civetMobileHostObject;
+
         public WebView()
         {
             CoreWebView2InitializationCompleted += OnCoreWebView2InitializationCompleted;
@@ -49,7 +51,17 @@ namespace WPFWebView.Controls
                 CoreWebView2.Settings.UserAgent = userAgent;
             }
 
-            CoreWebView2.AddScriptToExecuteOnDocumentCreated(CivetMobileScript.Source);
+            _civetMobileHostObject ??= new CivetMobileHostObject();
+            try
+            {
+                CoreWebView2.AddHostObjectToScript("civetmobile", _civetMobileHostObject);
+            }
+            catch (ArgumentException)
+            {
+                // Host object already added; ignore duplicate registration.
+            }
+
+            CoreWebView2.AddScriptToExecuteOnDocumentCreated(CivetMobileInjectionScript.Source);
         }
 
         private static string? LoadUserAgent()
