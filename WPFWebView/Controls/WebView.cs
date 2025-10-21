@@ -13,11 +13,8 @@ namespace WPFWebView.Controls
     {
         private static readonly Lazy<string?> UserAgent = new Lazy<string?>(LoadUserAgent);
 
-<<<<<<< HEAD
-=======
         private CivetMobileHostObject? _civetMobileHostObject;
 
->>>>>>> remotes/origin/codex/set-webview-useragent-via-config
         public WebView()
         {
             CoreWebView2InitializationCompleted += OnCoreWebView2InitializationCompleted;
@@ -54,9 +51,6 @@ namespace WPFWebView.Controls
                 CoreWebView2.Settings.UserAgent = userAgent;
             }
 
-<<<<<<< HEAD
-            CoreWebView2.AddScriptToExecuteOnDocumentCreated(CivetMobileScript.Source);
-=======
             _civetMobileHostObject ??= new CivetMobileHostObject();
             try
             {
@@ -68,7 +62,6 @@ namespace WPFWebView.Controls
             }
 
             CoreWebView2.AddScriptToExecuteOnDocumentCreated(CivetMobileInjectionScript.Source);
->>>>>>> remotes/origin/codex/set-webview-useragent-via-config
         }
 
         private static string? LoadUserAgent()
