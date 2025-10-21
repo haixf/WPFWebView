@@ -36,7 +36,7 @@
                 </Button>
             </DockPanel>
         </Border>
-        <web:WebView2 x:Name="webView" Source="https://www.baidu.com/"
+        <web:WebView2 x:Name="webView" Source="https://icivetapps.foxconn.com/iapps/civetdeve/MobileJs.PDSS.htm"
                      Grid.Row="1"/>
     </Grid>
 </Window>
